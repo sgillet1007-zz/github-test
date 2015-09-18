@@ -1,0 +1,15 @@
+doctype html
+html(lang='en')
+	head
+		meta(charset="utf-8")
+		title Passport-GitHub Example
+	body
+		if !user
+			p 
+				a(href="/") Home
+				a(href="/login") Log In
+		else
+			p
+				a(href="/") Home
+				a(href="/account") Account
+				a(href="/logout") Log Out
