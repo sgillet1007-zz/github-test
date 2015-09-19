@@ -5,8 +5,10 @@
     "body-parser": "^1.14.0",
     "cookie-parser": "^1.4.0",
     "cookie-session": "^1.2.0",
+    "express-logger": "0.x.x",
+    "morgan":"1.x.x",
     "jade": "^1",
-    "express": "3.x.x",
+    "express": "4.x.x",
     "method-override": "^2.3.5",
     "passport": "0.3.0",
     "passport-github": "1.0.0"
