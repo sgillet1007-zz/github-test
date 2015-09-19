@@ -4,11 +4,16 @@ block content
 	if !user
 		h2 Welcome! Please log in.
 			p 
-				a(href="/") Home
-				a(href="/login") Log In
+				li
+					a(href="/") Home
+				li
+					a(href="/login") Log In
 	else
-		h2 Hello user!
-			p
-				a(href="/") Home
-				a(href="/account") Account
-				a(href="/logout") Log Out
+		h2 Hello #{user.displayName}!
+			ul
+				li
+					a(href="/") Home
+				li
+					a(href="/account") Business Card
+				li
+					a(href="/logout") Log Out

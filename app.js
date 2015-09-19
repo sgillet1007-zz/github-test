@@ -55,6 +55,7 @@ app.get('/', function(req, res){
 
 app.get('/account', ensureAuthenticated, function(req, res){
   res.render('account', { user: req.user});
+  console.log("req.user: ", req.user);
 });
 
 app.get('/login', function(req, res){
