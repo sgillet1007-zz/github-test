@@ -1,7 +1,17 @@
 doctype html
-html(lang='en')
+html(lang='en' ng-app="myApp")
 	head
 		meta(charset="utf-8")
-		title Passport-GitHub Example
+		title GitHub Rolodex
+		link(rel="stylesheet", href="/main.css")
 	body
+		h1 GitHub Rolodex
 		block content
+
+		block scripts
+			script(type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js")
+			script(src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js")
+			script(src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular.min.js")
+			script(src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular-route.js")
+			script(src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular-resource.js")
+			script(src="/myApp.js")

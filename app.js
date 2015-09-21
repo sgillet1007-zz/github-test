@@ -49,19 +49,19 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(__dirname + '/public'));
 
-// **********vvv*** Load Routes ***
-app.get('/', appController.root)
-app.get('/account', ensureAuthenticated, appController.account)
+// **********vvv*** Load Server Routes ***
+app.get('/', appController.root);
+app.get('/rolodex', ensureAuthenticated, appController.rolodex)
 app.get('/login', appController.login)
-app.get('/auth/github', passport.authenticate('github'), appController.github)
-app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/login' }), appController.githubCallback)
-app.get('/logout', appController.logout)
+app.get('/auth/github', passport.authenticate('github'), appController.github);
+app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/login' }), appController.githubCallback);
+app.get('/logout', appController.logout);
 
 // **********vvv*** Middleware ***
 // ensure user is logged in
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
-  res.redirect('/login')
+  res.redirect('/login');
 }
 // error handling loaded after the loading the routes
 if ('development' == app.get('env')) {

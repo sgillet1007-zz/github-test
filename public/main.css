@@ -1,0 +1,31 @@
+.banner-wrapper {
+	width: 90%;
+	height: 200px;
+	border: 1px solid black;
+}
+
+.menu {
+	width: 90%;
+	height:50px;
+	background-color: gray;
+	position: relative;
+}
+
+.menu-item{
+	display:inline-block;
+	height:30px;
+	margin: 10px 5px;
+}
+
+.my-card{
+
+}
+
+.card-element{
+
+}
+
+
+.rolodex-card{
+
+}

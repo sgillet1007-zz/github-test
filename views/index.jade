@@ -2,18 +2,39 @@ extends layout
 
 block content
 	if !user
-		h2 Welcome! Please log in.
-			p 
-				li
-					a(href="/") Home
-				li
-					a(href="/login") Log In
+		.banner-wrapper
+			h2 Please log in.
+				.menu
+					p.menu-item
+						a(href="/auth/github") Login
 	else
-		h2 Hello #{user.displayName}!
-			ul
-				li
-					a(href="/") Home
-				li
-					a(href="/account") Account
-				li
-					a(href="/logout") Log Out
+		.banner-wrapper
+			h2 Logged in as #{user.displayName}
+				.menu
+					p.menu-item
+						a(href="/rolodex") My Rolodex
+					p.menu-item
+						a(href="/logout") Log Out
+		//- .my-card
+			//- .card-element
+			//- 	p ID: #{user.id}
+			//- .card-element
+			//- 	p Username: #{user.username}
+			//- .card-element
+			//- 	p Name: #{user.displayName}
+			//- .card-element
+			//- 	p Email: #{user.emails[0].value}
+			//- .card-element
+			//- 	img(src="#{user._json.avatar_url}" height="100" width="100")
+
+		.myCard(class="col s12" ng-controller="roloController")
+			div(class="myCard-photo")
+				img(src="#{user._json.avatar_url}", ng-show="!editing")
+				input(src="#{user._json.avatar_url}", ng-show="editing", placeholder="add in image")
+				
+			.row(class="myCard-text")
+				div(class="")
+					h1 {{ user }}
+					input(ng-model="test")
+		div
+			a(class="btn btn-large", ng-if="userContainer.user.username === profileUser.username", ng-show="!editing", ng-click="onEditing()") Edit Card
