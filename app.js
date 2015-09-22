@@ -33,7 +33,7 @@ passport.use(new GitHubStrategy({
   }
 ));
  
-mongoose.connect('mongodb://localhost/githubRolodex');
+mongoose.connect('mongodb://localhost/github_rolodex');
 
 // **********vvv*** Configure Express App ***
 var app = express();

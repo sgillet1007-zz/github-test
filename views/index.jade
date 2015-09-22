@@ -10,17 +10,17 @@ block content
 		.banner-wrapper
 				.menu
 					p.menu-item
-						a(href="/rolodex" class="menu-text") My Rolodex
+						a(href="/rolodex" class="menu-text") Rolodex
 					p.menu-item
 						a(href="/logout" class="menu-text") Log Out
 		
 		.myCard(class="col s12" ng-controller="myController")
 			div(class="my-card-photo")
-				img(src='{{user_profilePhoto}}', height="100px", width="100px")
+				img(src='{{userdata.avatar_url}}', height="100px", width="100px")
 			div
-				h1 {{ user_name }}
-				p {{ user_company }}
-				p {{ user_location }}
-				p {{ user_email}}
+				h1 {{ userdata.name }}
+				p {{ userdata.company }}
+				p {{ userdata.location }}
+				p {{ userdata.email }}
 			div
 				button Edit Card

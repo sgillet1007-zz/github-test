@@ -1,14 +1,14 @@
 var mongoose = require('mongoose');
 
 var userSchema = mongoose.Schema({
-  githubId      : String,
+  githubId      : {type: String,required: true, unique: true},
   name          : String,
   location      : String,
   email         : String,
   company       : String,
   hireable      : String,
   bio           : String,
-  githubProfile : String,
+  githubProfile : {type: String, unique: true},
   githubSince   : String,
   reposNum      : Number,
   followers     : Number,
