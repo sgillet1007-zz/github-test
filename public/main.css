@@ -1,7 +1,11 @@
+.body {
+	font-family: "Arial"
+}
+
 .banner-wrapper {
 	width: 90%;
-	height: 200px;
-	border: 1px solid black;
+	height: 100px;
+
 }
 
 .menu {
@@ -9,16 +13,30 @@
 	height:50px;
 	background-color: gray;
 	position: relative;
+	text-align: right;
 }
 
 .menu-item{
 	display:inline-block;
 	height:30px;
-	margin: 10px 5px;
+	margin: 10px 20px;
+}
+
+.menu-text{
+	font-size: 25px;
+	font-weight: bold;
+	text-decoration: none;
+	color: white;
 }
 
 .my-card{
 
+}
+
+.my-card-photo{
+	border:1px solid black;
+	height: 100px;
+	width: 100px;
 }
 
 .card-element{

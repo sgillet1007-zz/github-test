@@ -5,17 +5,18 @@ var User = require('../models/user.js');
 var appController = {
 
 	root: function(req, res){
-  		res.render('index', { user: req.user });
-  		// TO DO
-  		// if db values of user are default values then 
-  		// save user details to the database using the user 
-  		// properties from github
-  		console.log("root controller user: ", req.user);
-  		// TO DO
-  		//if database contains user with id = req.user._json.login
-  			//do nothing
-  		//else populate a new User entry using req.user object
+      res.render('index', { user: req.user });
 	},
+
+  userdata: function(req,res){
+    res.send(req.user);
+  },
+
+  allusers: function(req, res){
+    User.find({}, function(err, users){
+      res.send(users)
+    })
+  },
 
 	rolodex: function(req, res){
   		res.render('rolodex', { user: req.user});

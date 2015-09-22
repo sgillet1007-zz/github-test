@@ -33,7 +33,7 @@ passport.use(new GitHubStrategy({
   }
 ));
  
-mongoose.connect('mongodb://localhost/github-test');
+mongoose.connect('mongodb://localhost/githubRolodex');
 
 // **********vvv*** Configure Express App ***
 var app = express();
@@ -51,6 +51,7 @@ app.use(express.static(__dirname + '/public'));
 
 // **********vvv*** Load Server Routes ***
 app.get('/', appController.root);
+app.get('/userdata', appController.userdata);
 app.get('/rolodex', ensureAuthenticated, appController.rolodex)
 app.get('/login', appController.login)
 app.get('/auth/github', passport.authenticate('github'), appController.github);
