@@ -27,5 +27,5 @@ block content
 				textarea(placeholder="edit email", ng-show="editing", ng-model="userdata.email")
 				p {{ userdata.email }}
 			div
-				button(ng-click="editToggle()") Edit Card
-				button(ng-click="send()") Submit
+				button(ng-show="!editing" ng-click="editToggle()") Edit Card
+				button(ng-show="editing" ng-click="send()") Submit

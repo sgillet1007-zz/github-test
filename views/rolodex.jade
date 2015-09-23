@@ -5,5 +5,7 @@ block content
 			.menu
 				p.menu-item
 					a(href="/" class="menu-text") My Business Card
-	.rolodex-wrapper
+	.rolodex-wrapper(class="col s12" ng-controller="roloController")
+		button(ng-click="display()") Show Rolodex
+		br
 		textarea(type="text" placeholder="Type in a user name" ng-model="search")

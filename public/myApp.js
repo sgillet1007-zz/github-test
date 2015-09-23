@@ -2,10 +2,11 @@ var myApp = angular.module('myApp', ['ngResource', 'ngRoute']);
 
 myApp.controller('myController', function($scope, $http) {
 	$scope.editing = false;
+
 	$http.get('/userdata').then(function(returnData){
 		//create userdata object formatted same as userSchema
 		$scope.userdata = {
-			githubId		: returnData.data._json.id,
+			_id				: returnData.data._json.id,
 			name 			: returnData.data._json.name,
 			location		: returnData.data._json.location,
 			email			: returnData.data._json.email,
@@ -19,9 +20,30 @@ myApp.controller('myController', function($scope, $http) {
 			starredRepos	: returnData.data._json.starred_url,
 			profilePhoto	: returnData.data._json.avatar_url
 		};
-		// console.log("$scope.userdata: ",$scope.userdata);
 	}, function(error){
-		console.log("ERROR returned from myController");
+		console.log("ERROR returned from $http.get '/userdata'");
+		});
+
+	$http.get('/userdataDB').then(function(response){
+		$scope.userdataDB = {
+			_id				: response._id,
+			name 			: response.name,
+			location		: response.location,
+			email			: response.email,
+			company			: response.company,
+			hireable		: response.hireable,
+			bio				: response.bio,
+			githubProfile	: response.html_url,
+			githubSince		: response.created_at,
+			reposNum		: response.public_repos,
+			followers		: response.followers,
+			starredRepos	: response.starred_url,
+			profilePhoto	: response.avatar_url
+		};
+		console.log("/userdataDB response: ",response);
+		// console.log($scope.userdataDB);
+	},function(error){
+		console.log("ERROR returned from $http.get '/userdataDB'");
 		});
 
 	$scope.send = function (){
@@ -29,7 +51,7 @@ myApp.controller('myController', function($scope, $http) {
 			then(function(response){
 				response.data.err ? (
 					$scope.postError = true,
-					console.log('POST Error....oh snap!')
+					console.log('POST Error')
 					) : (
 					$scope.postError = false,
 					console.log("This is the response of POST: ", response),
@@ -38,21 +60,22 @@ myApp.controller('myController', function($scope, $http) {
 			}, 
 			function(response){
 				$scope.postError = true;
-				console.log('POST Error....oh snap!')
+				console.log('POST Error')
 			});
-		$scope.editing ? $scope.editing = false : $scope.editing;
+		$scope.editing ? !$scope.editing : $scope.editing;
 	};
 
 	$scope.editToggle = function(){
 		$scope.editing = !$scope.editing;
-	} 
+	}
 });
 
-
 myApp.controller('roloController', function($scope, $http){
-	$http.get('/allusers').then(function(returnData){
-		console.log(returnData);
-		//TO DO parse out individual users from returned json object
-	})
+	$scope.display = function(){
+		$http.get('/allusers').then(function(returnData){
+			console.log("roloController returnData: ",returnData);
+			$scope.allusers = returnData;
+		})
+	}
 });
 

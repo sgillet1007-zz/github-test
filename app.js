@@ -52,6 +52,8 @@ app.use(express.static(__dirname + '/public'));
 // **********vvv*** Load Server Routes ***
 app.get('/', appController.root);
 app.get('/userdata', appController.userdata);
+app.get('/userdataDB', appController.userdataDB);
+app.get('/allusers', appController.allusers);
 app.post('/post', appController.postuserdata);
 app.get('/rolodex', ensureAuthenticated, appController.rolodex);
 app.get('/login', appController.login);
