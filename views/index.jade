@@ -14,13 +14,18 @@ block content
 					p.menu-item
 						a(href="/logout" class="menu-text") Log Out
 		
-		.myCard(class="col s12" ng-controller="myController")
+		.myCard(class="col s12" ng-controller="myController" ng-cloak)
 			div(class="my-card-photo")
 				img(src='{{userdata.profilePhoto}}', height="100px", width="100px")
 			div
+				textarea(placeholder="edit name", ng-show="editing", ng-model="userdata.name")
 				h1 {{ userdata.name }}
+				textarea(placeholder="edit company", ng-show="editing", ng-model="userdata.company")
 				p {{ userdata.company }}
+				textarea(placeholder="edit location", ng-show="editing", ng-model="userdata.location")
 				p {{ userdata.location }}
+				textarea(placeholder="edit email", ng-show="editing", ng-model="userdata.email")
 				p {{ userdata.email }}
 			div
-				button Edit Card
+				button(ng-click="editToggle()") Edit Card
+				button(ng-click="send()") Submit

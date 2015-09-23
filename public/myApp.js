@@ -1,6 +1,7 @@
 var myApp = angular.module('myApp', ['ngResource', 'ngRoute']);
 
 myApp.controller('myController', function($scope, $http) {
+	$scope.editing = false;
 	$http.get('/userdata').then(function(returnData){
 		//create userdata object formatted same as userSchema
 		$scope.userdata = {
@@ -18,11 +19,35 @@ myApp.controller('myController', function($scope, $http) {
 			starredRepos	: returnData.data._json.starred_url,
 			profilePhoto	: returnData.data._json.avatar_url
 		};
-		console.log("$scope.userdata: ",$scope.userdata);
+		// console.log("$scope.userdata: ",$scope.userdata);
 	}, function(error){
 		console.log("ERROR returned from myController");
-	});
+		});
+
+	$scope.send = function (){
+		$http.post('/post', $scope.userdata).
+			then(function(response){
+				response.data.err ? (
+					$scope.postError = true,
+					console.log('POST Error....oh snap!')
+					) : (
+					$scope.postError = false,
+					console.log("This is the response of POST: ", response),
+					$scope.response = response
+					);
+			}, 
+			function(response){
+				$scope.postError = true;
+				console.log('POST Error....oh snap!')
+			});
+		$scope.editing ? $scope.editing = false : $scope.editing;
+	};
+
+	$scope.editToggle = function(){
+		$scope.editing = !$scope.editing;
+	} 
 });
+
 
 myApp.controller('roloController', function($scope, $http){
 	$http.get('/allusers').then(function(returnData){

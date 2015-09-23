@@ -52,7 +52,7 @@ app.use(express.static(__dirname + '/public'));
 // **********vvv*** Load Server Routes ***
 app.get('/', appController.root);
 app.get('/userdata', appController.userdata);
-// app.get('/postuserdata', appController.postuserdata);
+app.post('/post', appController.postuserdata);
 app.get('/rolodex', ensureAuthenticated, appController.rolodex);
 app.get('/login', appController.login);
 app.get('/auth/github', passport.authenticate('github'), appController.github);
