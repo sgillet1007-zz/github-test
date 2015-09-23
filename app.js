@@ -52,8 +52,9 @@ app.use(express.static(__dirname + '/public'));
 // **********vvv*** Load Server Routes ***
 app.get('/', appController.root);
 app.get('/userdata', appController.userdata);
-app.get('/rolodex', ensureAuthenticated, appController.rolodex)
-app.get('/login', appController.login)
+// app.get('/postuserdata', appController.postuserdata);
+app.get('/rolodex', ensureAuthenticated, appController.rolodex);
+app.get('/login', appController.login);
 app.get('/auth/github', passport.authenticate('github'), appController.github);
 app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/login' }), appController.githubCallback);
 app.get('/logout', appController.logout);

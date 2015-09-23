@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "dependencies": {
     "body-parser": "^1.14.0",
+    "connect-flash": "~0.1.1",
     "errorhandler":"^1.x.x",
     "cookie-parser": "^1.4.0",
     "cookie-session": "^1.2.0",
