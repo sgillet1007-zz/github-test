@@ -18,14 +18,14 @@ block content
 			div(class="my-card-photo")
 				img(src='{{userdata.profilePhoto}}', height="100px", width="100px")
 			div
-				textarea(placeholder="edit name", ng-show="editing", ng-model="userdata.name")
-				h1 {{ userdata.name }}
-				textarea(placeholder="edit company", ng-show="editing", ng-model="userdata.company")
-				p {{ userdata.company }}
-				textarea(placeholder="edit location", ng-show="editing", ng-model="userdata.location")
-				p {{ userdata.location }}
-				textarea(placeholder="edit email", ng-show="editing", ng-model="userdata.email")
-				p {{ userdata.email }}
+				input(type="text" placeholder="edit name", ng-show="editing", ng-model="userdata.name")
+				h1(class="card-element" ng-show="!editing") {{ userdata.name }}
+				input(type="text" placeholder="edit company", ng-show="editing", ng-model="userdata.company")
+				p(class="card-element" ng-show="!editing") {{ userdata.company }}
+				input(type="text" placeholder="edit location", ng-show="editing", ng-model="userdata.location")
+				p(class="card-element" ng-show="!editing") {{ userdata.location }}
+				input(type="text" placeholder="edit email", ng-show="editing", ng-model="userdata.email")
+				p(class="card-element" ng-show="!editing") {{ userdata.email }}
 			div
 				button(ng-show="!editing" ng-click="editToggle()") Edit Card
 				button(ng-click="send()" ng-show="editing") Submit

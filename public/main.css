@@ -48,10 +48,12 @@
 	border:1px solid black;
 	height: 100px;
 	width: 100px;
-	margin: 5px;
+	margin: 10px;
+	border-radius:5px;
 }
 
 .card-element{
+	margin:5px;
 
 }
 

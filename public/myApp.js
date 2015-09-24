@@ -54,15 +54,15 @@ myApp.controller('myController', function($scope, $http) {
 					console.log('POST Error')
 					) : (
 					$scope.postError = false,
-					console.log("This is the response of POST: ", response),
-					$scope.response = response
+					console.log("This is the response of POST: ", response)
 					);
 			}, 
 			function(response){
 				$scope.postError = true;
 				console.log('POST Error')
 			});
-		$scope.editing ? !$scope.editing : $scope.editing;
+		// TO DO $http.get db data and assign it to $scope.userdata
+		$scope.editing = !$scope.editing;
 	};
 
 	$scope.editToggle = function(){
