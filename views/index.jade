@@ -14,7 +14,7 @@ block content
 					p.menu-item
 						a(href="/logout" class="menu-text") Log Out
 		
-		.myCard(class="col s12" ng-controller="myController" ng-cloak)
+		.myCard(class="col s12 my-card" ng-controller="myController")
 			div(class="my-card-photo")
 				img(src='{{userdata.profilePhoto}}', height="100px", width="100px")
 			div
@@ -28,4 +28,4 @@ block content
 				p {{ userdata.email }}
 			div
 				button(ng-show="!editing" ng-click="editToggle()") Edit Card
-				button(ng-show="editing" ng-click="send()") Submit
+				button(ng-click="send()" ng-show="editing") Submit

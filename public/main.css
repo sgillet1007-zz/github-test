@@ -2,10 +2,14 @@
 	font-family: "Arial"
 }
 
-.banner-wrapper {
-	width: 90%;
-	height: 100px;
+.h1-title{
+	color:gray;
+	margin:0px;
+}
 
+.banner-wrapper {
+	width: 107vw;
+	height: 100px;
 }
 
 .menu {
@@ -30,6 +34,13 @@
 }
 
 .my-card{
+	margin: 0 auto;
+	width: 80%;
+	min-height: 400px;
+	border: 1px solid black;
+	box-shadow: 0px 5px 5px #888888;
+	border-radius: 5px;
+	
 
 }
 
@@ -37,6 +48,7 @@
 	border:1px solid black;
 	height: 100px;
 	width: 100px;
+	margin: 5px;
 }
 
 .card-element{

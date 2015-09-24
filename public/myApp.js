@@ -73,8 +73,8 @@ myApp.controller('myController', function($scope, $http) {
 myApp.controller('roloController', function($scope, $http){
 	$scope.display = function(){
 		$http.get('/allusers').then(function(returnData){
-			console.log("roloController returnData: ",returnData);
-			$scope.allusers = returnData;
+			console.log("roloController returnData.data: ",returnData.data);
+			$scope.allusers = returnData.data;
 		})
 	}
 });
