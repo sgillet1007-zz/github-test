@@ -10,22 +10,25 @@ block content
 		.banner-wrapper
 				.menu
 					p.menu-item
-						a(href="/rolodex" class="menu-text") Rolodex
+						a(href="/users/:_id" class="menu-text") My Card
+					p.menu-item
+						a(href="/users" class="menu-text") Rolodex
 					p.menu-item
 						a(href="/logout" class="menu-text") Log Out
-		
-		.myCard(class="col s12 my-card" ng-controller="myController")
-			div(class="my-card-photo")
-				img(src='{{userdata.profilePhoto}}', height="100px", width="100px")
-			div
-				input(type="text" placeholder="edit name", ng-show="editing", ng-model="userdata.name")
-				h1(class="card-element" ng-show="!editing") {{ userdata.name }}
-				input(type="text" placeholder="edit company", ng-show="editing", ng-model="userdata.company")
-				p(class="card-element" ng-show="!editing") {{ userdata.company }}
-				input(type="text" placeholder="edit location", ng-show="editing", ng-model="userdata.location")
-				p(class="card-element" ng-show="!editing") {{ userdata.location }}
-				input(type="text" placeholder="edit email", ng-show="editing", ng-model="userdata.email")
-				p(class="card-element" ng-show="!editing") {{ userdata.email }}
-			div
-				button(ng-show="!editing" ng-click="editToggle()") Edit Card
-				button(ng-click="send()" ng-show="editing") Submit
+		div(ng-controller="newUserController")
+			.myCard-container
+			.my-card
+				div(class="my-card-photo")
+					img(src='{{userData.profilePhoto}}', height="100px", width="100px")
+				div
+					input(type="text" placeholder="edit name", ng-show="editing", ng-model="userData.name")
+					h1(class="card-element" ng-show="!editing") {{ userData.name }}
+					input(type="text" placeholder="edit company", ng-show="editing", ng-model="userData.company")
+					p(class="card-element" ng-show="!editing") {{ userData.company }}
+					input(type="text" placeholder="edit location", ng-show="editing", ng-model="userData.location")
+					p(class="card-element" ng-show="!editing") {{ userData.location }}
+					input(type="text" placeholder="edit email", ng-show="editing", ng-model="userData.email")
+					p(class="card-element" ng-show="!editing") {{ userData.email }}
+				div
+					button(ng-show="!editing" ng-click="editToggle()") Edit Card
+					button(ng-click="send()" ng-show="editing") Submit

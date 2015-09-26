@@ -7,7 +7,9 @@ var cookieSession = require('cookie-session');
 var methodOverride = require('method-override');
 var logger = require('morgan');
 var errorHandler = require('errorhandler');
-var appController = require('./controllers/appController.js');
+var authController = require('./controllers/authController.js');
+var userController = require('./controllers/userController.js');
+
 var mongoose = require('mongoose');
 
 var GITHUB_CLIENT_ID = "52e94e8a791c959da470";
@@ -43,34 +45,44 @@ app.use(logger("combined"));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
-app.use(cookieSession({secret: 'avery-ipa'}));
+app.use(cookieSession({secret: 'chimay'}));
 app.use(methodOverride());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(__dirname + '/public'));
 
 // **********vvv*** Load Server Routes ***
-app.get('/', appController.root);
-app.get('/userdata', appController.userdata);
-app.get('/userdataDB', appController.userdataDB);
-app.get('/allusers', appController.allusers);
-app.post('/post', appController.postuserdata);
-app.get('/rolodex', ensureAuthenticated, appController.rolodex);
-app.get('/login', appController.login);
-app.get('/auth/github', passport.authenticate('github'), appController.github);
-app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/login' }), appController.githubCallback);
-app.get('/logout', appController.logout);
+app.get('/', userController.index);
 
-// **********vvv*** Middleware ***
+//GET new user data
+app.get('/users/get', userController.me);
+//POST new user
+app.post('/users/create', userController.postMe);
+
+//GET single user
+app.get('/users/getUser', userController.getUser);
+//PUT single user
+app.post('/api/users/:_id', userController.putUser);
+
+//GET all users
+app.get('/users', userController.getUsers);
+
+//** authentication routes **
+app.get('/login', authController.login);
+app.get('/auth/github', passport.authenticate('github'), authController.github);
+app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/login' }), authController.githubCallback);
+app.get('/logout', authController.logout);
 // ensure user is logged in
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
   res.redirect('/login');
 }
+
 // error handling loaded after the loading the routes
 if ('development' == app.get('env')) {
   app.use(errorHandler());
 }
+
 // **********vvv*** Initialize Server ***
 var port = 3000;
 var server = app.listen(port, function(){
