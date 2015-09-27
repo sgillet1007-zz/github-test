@@ -54,13 +54,13 @@ app.use(express.static(__dirname + '/public'));
 // **********vvv*** Load Server Routes ***
 app.get('/', userController.index);
 
-//GET new user data
+//GET new logged in user's data save it to $scope.ghUserData and myApp.value('user_id',[])
 app.get('/users/get', userController.me);
-//POST new user
+//POST $scope.ghUserData to mongo db.  Validation will prevent overwriting
 app.post('/users/create', userController.postMe);
-
-//GET single user
+//GET user with _id === myApp.value('user_id')
 app.get('/users/getUser', userController.getUser);
+
 //PUT single user
 app.post('/api/users/:_id', userController.putUser);
 
