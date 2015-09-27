@@ -13,7 +13,7 @@ block content
 						a(href="/users" class="menu-text") Rolodex
 					p.menu-item
 						a(href="/logout" class="menu-text") Log Out
-		div(ng-controller="newUserController")
+		div(ng-controller="userController")
 			.myCard-container
 			.my-card
 				div(class="my-card-photo")
@@ -29,4 +29,4 @@ block content
 					p(class="card-element" ng-show="!editing") {{ userData.email }}
 				div
 					button(ng-show="!editing" ng-click="editToggle()") Edit Card
-					button(ng-click="send()" ng-show="editing") Submit
+					button(ng-click="updateUser()" ng-show="editing") Update Card

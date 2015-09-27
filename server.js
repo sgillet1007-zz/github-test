@@ -56,13 +56,13 @@ app.get('/', userController.index);
 
 //GET new logged in user's data save it to $scope.ghUserData and myApp.value('user_id',[])
 app.get('/users/get', userController.me);
-//POST $scope.ghUserData to mongo db.  Validation will prevent overwriting
+//POST $scope.ghUserData to mongo db.  Mongo validation of "_id" property prevents overwriting.
 app.post('/users/create', userController.postMe);
-//GET user with _id === myApp.value('user_id')
+//GET user with "_id" === logged in user github "id" property.
 app.get('/users/getUser', userController.getUser);
 
 //PUT single user
-app.post('/api/users/:_id', userController.putUser);
+app.post('/users/putUser', userController.putUser);
 
 //GET all users
 app.get('/users', userController.getUsers);

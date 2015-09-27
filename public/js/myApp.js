@@ -1,6 +1,7 @@
 var myApp = angular.module('myApp', ['ngResource', 'ngRoute']);
 
-myApp.controller('newUserController', function($scope, $http, $resource) {
+myApp.controller('userController', function($scope, $http, $resource) {
+	$scope.editing = false;
 	$http.get('/users/get').then(function(response){
 		$scope.ghUserData = {
 			_id				: String(response.data.id),
@@ -27,5 +28,18 @@ myApp.controller('newUserController', function($scope, $http, $resource) {
 		console.log('responseData.data = ', responseData.data);
 	}), function(error){
 		console.log("Error: ", error);
+	};
+
+	$scope.editToggle = function(){
+		$scope.editing = !$scope.editing;
+	};
+
+	$scope.updateUser = function(){
+		$http.post('/users/putUser', $scope.userData).then(function(response){
+			console.log('User updated!!')
+		}), function(error){
+		console.log("Error: ", error);
+		};
+		$scope.editing = !$scope.editing;
 	};
 });

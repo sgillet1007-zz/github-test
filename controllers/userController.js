@@ -61,6 +61,10 @@ var userController = {
 
 	putUser: function(req, res){
 		//POST body contains JSON string. Update user.
+		console.log("*** before user update this is req.body: " , req.body)
+		User.update({_id : req.body._id}, req.body, function(err, userData) {
+			console.log("successful database update")
+		})
 	},
 
 	getUsers: function(req, res) {
