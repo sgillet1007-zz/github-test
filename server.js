@@ -13,7 +13,7 @@ var userController = require('./controllers/userController.js');
 var mongoose = require('mongoose');
 
 var GITHUB_CLIENT_ID = "52e94e8a791c959da470";
-var GITHUB_CLIENT_SECRET = "9f218f39a652ee06ea5ce469ba6d2e027269a073";
+var GITHUB_CLIENT_SECRET = "0160e5e639acf83f99d893f92581f669572d69c5";
 
 passport.serializeUser(function(user, done) {
   done(null, user);
@@ -25,7 +25,7 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new GitHubStrategy({
     clientID: GITHUB_CLIENT_ID,
     clientSecret: GITHUB_CLIENT_SECRET,
-    callbackURL: "http://127.0.0.1:3000/auth/github/callback"
+    callbackURL: "https://git.heroku.com/github-rolodex-sg/auth/github/callback"
   },
 
   function(accessToken, refreshToken, profile, done) {
