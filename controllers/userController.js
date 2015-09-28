@@ -8,13 +8,10 @@ var userController = {
 	},
 
 	me :function(req, res){
-		//GET current logged in gh user details as json
 		res.send(req.user._json);
 	},
 
 	postMe: function(req, res){
-		//POST body contains JSON string
-		console.log("********* SERVER req.body before save to db: ", req.body);
 		var user = {
 			_id      	  : req.body._id,
 			name          : req.body.name,
@@ -34,41 +31,32 @@ var userController = {
 		var newUser = new User(user);
 
 		newUser.save(function(err,doc){
-			if(err){
-				if(err.code === 11000){
-					console.log('*** SERVER err code 11000 --> user already exists! ***');
-					// res.send('ERROR');
-				}
-				console.log("*** SERVER Error: ", err);
-				// res.send('ERROR');
-			}
-			else{
-				console.log('*** SERVER --> User created!');
-				// res.send('Success!');
-			}
+			err ? console.log("POST Error: ", err) : console.log('New user created!');
 		});
 	},
 
 	getUser: function(req, res){
-		console.log("*** This is req.user._json.id before getting user data from db: ",req.user._json.id);
-		//pass returned data to --> $scope.userData
-		// console.log("req.body", req.body);
 		User.findOne({_id : req.user._json.id}, function(err, userData) {
-			console.log("*** This is the returned userData from db: ", userData); //this works
 			res.send(userData); 
 		});	
 	},
 
 	putUser: function(req, res){
-		//POST body contains JSON string. Update user.
-		console.log("*** before user update this is req.body: " , req.body)
 		User.update({_id : req.body._id}, req.body, function(err, userData) {
-			console.log("successful database update")
+			err ? console.log("PUT Error: ", err) : console.log('Database updated!');
 		})
 	},
 
+	rolodex: function(req, res){
+		res.render('rolodex');
+	},
+
 	getUsers: function(req, res) {
-		//pass returned data to --> $scope.users	
+		//pass returned data to --> $scope.users
+		User.find({}, function(err, allUsers) {
+			err ? console.log("GET Error: ", console.log) : (console.log("*** allUsers: ", allUsers),
+			res.send(allUsers));
+		})
 	},
 };
 

@@ -1,6 +1,6 @@
-var myApp = angular.module('myApp', ['ngResource', 'ngRoute']);
+var myApp = angular.module('myApp', []);
 
-myApp.controller('userController', function($scope, $http, $resource) {
+myApp.controller('userController', function($scope, $http) {
 	$scope.editing = false;
 	$http.get('/users/get').then(function(response){
 		$scope.ghUserData = {
@@ -19,21 +19,19 @@ myApp.controller('userController', function($scope, $http, $resource) {
 			profilePhoto	: response.data.avatar_url
 		};
 		$scope.userData = $scope.ghUserData;
+		console.log($scope.userData);
 	}).then(function(){
 		$http.post('/users/create', $scope.userData);
 	}).then(function(){
 		return $http.get('/users/getUser');
 	}).then(function(responseData){
-		$scope.userData = responseData.data; //this updates $scope.userData and card fields
-		console.log('responseData.data = ', responseData.data);
+		$scope.userData = responseData.data;
 	}), function(error){
 		console.log("Error: ", error);
 	};
-
 	$scope.editToggle = function(){
 		$scope.editing = !$scope.editing;
 	};
-
 	$scope.updateUser = function(){
 		$http.post('/users/putUser', $scope.userData).then(function(response){
 			console.log('User updated!!')
@@ -42,4 +40,13 @@ myApp.controller('userController', function($scope, $http, $resource) {
 		};
 		$scope.editing = !$scope.editing;
 	};
+});
+
+myApp.controller('rolodexController', function($scope, $http){
+	$http.get('/getUsers').then(function(response){
+		$scope.rolodex = response.data;
+	}),function(error){
+		console.log("Rolodex Error: ", error);
+	};
+
 });

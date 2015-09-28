@@ -52,20 +52,21 @@ app.use(passport.session());
 app.use(express.static(__dirname + '/public'));
 
 // **********vvv*** Load Server Routes ***
+//render index view
 app.get('/', userController.index);
-
 //GET new logged in user's data save it to $scope.ghUserData and myApp.value('user_id',[])
 app.get('/users/get', userController.me);
 //POST $scope.ghUserData to mongo db.  Mongo validation of "_id" property prevents overwriting.
 app.post('/users/create', userController.postMe);
 //GET user with "_id" === logged in user github "id" property.
 app.get('/users/getUser', userController.getUser);
-
-//PUT single user
+//PUT user
 app.post('/users/putUser', userController.putUser);
 
+//Render rolodex view
+app.get('/rolodex', userController.rolodex);
 //GET all users
-app.get('/users', userController.getUsers);
+app.get('/getUsers', userController.getUsers);
 
 //** authentication routes **
 app.get('/login', authController.login);

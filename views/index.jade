@@ -10,11 +10,10 @@ block content
 		.banner-wrapper
 				.menu
 					p.menu-item
-						a(href="/users" class="menu-text") Rolodex
+						a(href="/rolodex" class="menu-text") Rolodex
 					p.menu-item
 						a(href="/logout" class="menu-text") Log Out
-		div(ng-controller="userController")
-			.myCard-container
+		.myCard-container(ng-controller="userController")
 			.my-card
 				div(class="my-card-photo")
 					img(src='{{userData.profilePhoto}}', height="100px", width="100px")
