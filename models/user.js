@@ -10,11 +10,11 @@ var userSchema = mongoose.Schema({
   bio                 : String,
   githubProfile       : String,
   githubSince         : String,
-  githubSince_mm/yyyy : String, //string formatting to create
   reposNum            : Number,
   followers           : Number,
   starredRepos        : String,
-  languages           : String, //GET request to starredRepos URL
+  starredReposArray   : Array,
+  languagesList       : Array,
   profilePhoto        : String
 });
 

@@ -56,6 +56,10 @@ app.use(express.static(__dirname + '/public'));
 app.get('/', userController.index);
 //GET new logged in user's data save it to $scope.ghUserData and myApp.value('user_id',[])
 app.get('/users/get', userController.me);
+//GET user languages
+app.get('/user/languages', userController.myLanguages);
+
+
 //POST $scope.ghUserData to mongo db.  Mongo validation of "_id" property prevents overwriting.
 app.post('/users/create', userController.postMe);
 //GET user with "_id" === logged in user github "id" property.

@@ -11,6 +11,22 @@ var userController = {
 		res.send(req.user._json);
 	},
 
+	myLanguages : function(req, res){
+		var getUrl = req.user._json.starred_url.slice(0, -15);
+		var options = { 
+			url: getUrl,
+			headers: {'User-Agent':'sgillet1007'}
+		};
+		request.get(options, function(err, response, body){
+			var parsed = JSON.parse(response.body);
+			if (!err){
+				res.send(parsed);
+			}
+		})
+
+
+	},
+
 	postMe: function(req, res){
 		var user = {
 			_id      	  : req.body._id,

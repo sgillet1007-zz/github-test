@@ -2,24 +2,41 @@ var myApp = angular.module('myApp', []);
 
 myApp.controller('userController', function($scope, $http) {
 	$scope.editing = false;
+	
 	$http.get('/users/get').then(function(response){
-		$scope.ghUserData = {
-			_id				: String(response.data.id),
-			name 			: response.data.name,
-			location		: response.data.location,
-			email			: response.data.email,
-			company			: response.data.company,
-			hireable		: response.data.hireable,
-			bio				: response.data.bio,
-			githubProfile	: response.data.html_url,
-			githubSince		: response.data.created_at,
-			reposNum		: response.data.public_repos,
-			followers		: response.data.followers,
-			starredRepos	: response.data.starred_url,
-			profilePhoto	: response.data.avatar_url
+		var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+		var joinedYear = response.data.created_at.slice(0, 4);
+		var joinedMonth = monthNames[Number(response.data.created_at.slice(5, 7))+1];
+		var joinedDate = joinedMonth + ", " + joinedYear;
+		$scope.userData = {
+			_id				  : String(response.data.id),
+			name 			  : response.data.name,
+			location		  : response.data.location,
+			email			  : response.data.email,
+			company			  : response.data.company,
+			hireable		  : response.data.hireable,
+			bio				  : response.data.bio,
+			githubProfile	  : response.data.html_url,
+			githubSince		  : joinedDate,
+			reposNum		  : response.data.public_repos,
+			followers		  : response.data.followers,
+			starredRepos	  : response.data.starred_url,
+			starredReposArray : [],
+			languagesList     : [],
+			profilePhoto	  : response.data.avatar_url
 		};
-		$scope.userData = $scope.ghUserData;
-		console.log($scope.userData);
+	}).then(function(){
+		return $http.get('/user/languages');
+	}).then(function(response){
+		$scope.userData.starredReposArray = response.data;
+		var languagesArray =[];
+		for(var i = 0; i<response.data.length;i++){
+			languagesArray.push(response.data[i].language);
+		}
+		return languagesArray
+	}).then(function(response){
+		$scope.userData.languagesList = response;
+		console.log("$scope.userData: ", $scope.userData)
 	}).then(function(){
 		$http.post('/users/create', $scope.userData);
 	}).then(function(){
