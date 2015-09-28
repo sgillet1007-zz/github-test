@@ -35,7 +35,7 @@ passport.use(new GitHubStrategy({
   }
 ));
  
-mongoose.connect('mongodb://localhost/github_rolodex');
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/github_rolodex');
 
 // **********vvv*** Configure Express App ***
 var app = express();
@@ -89,7 +89,7 @@ if ('development' == app.get('env')) {
 }
 
 // **********vvv*** Initialize Server ***
-var port = 3000;
+var port = Number(process.env.PORT || 3000);
 var server = app.listen(port, function(){
-  console.log('Express server listening on port ' + server.address().port);
+  console.log('Express server listening on port ' + port);
 });
