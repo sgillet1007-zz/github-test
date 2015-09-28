@@ -7,4 +7,33 @@ block content
 						a(href="/" class="menu-text") My Card
 				p.menu-item
 					a(href="/logout" class="menu-text") Log Out
-	.rolodex-container(class="col s12" ng-controller="rolodexController")
+	div(ng-controller="rolodexController")
+		.my-card(ng-repeat="entry in rolodex")
+				.top-row
+					.my-card-photo
+						img(class="border" src='{{entry.profilePhoto}}' height="100px" width="100px")
+				
+				.middle-row
+					.middle-col
+						div.card-element
+							#name {{ entry.name }}
+						div.card-element
+							.text {{ entry.company || "independent"}}
+						div.card-element
+							.text {{ entry.location }}
+						div.card-element
+							.text {{ entry.email }}
+						br
+						div.card-element
+							.text {{ entry.bio }}
+
+					.middle-col
+						div.card-element
+							.text On GitHub since {{ entry.githubSince }}
+						div.card-element						
+							.text Public Repos: {{ entry.reposNum }}
+						div.card-element
+							.text Followers: {{ entry.followers }}
+						div.card-element
+							.text Languages:
+							.text(ng-repeat="el in entry.languagesSumStrings") {{ el }}

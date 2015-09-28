@@ -15,6 +15,7 @@ var userSchema = mongoose.Schema({
   starredRepos        : String,
   starredReposArray   : Array,
   languagesList       : Array,
+  languagesSumStrings : Array,
   profilePhoto        : String
 });
 

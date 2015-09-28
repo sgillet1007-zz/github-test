@@ -13,19 +13,55 @@ block content
 						a(href="/rolodex" class="menu-text") Rolodex
 					p.menu-item
 						a(href="/logout" class="menu-text") Log Out
-		.myCard-container(ng-controller="userController")
-			.my-card
-				div(class="my-card-photo")
-					img(src='{{userData.profilePhoto}}', height="100px", width="100px")
-				div
-					input(type="text" placeholder="edit name", ng-show="editing", ng-model="userData.name")
-					h1(class="card-element" ng-show="!editing") {{ userData.name }}
-					input(type="text" placeholder="edit company", ng-show="editing", ng-model="userData.company")
-					p(class="card-element" ng-show="!editing") {{ userData.company }}
-					input(type="text" placeholder="edit location", ng-show="editing", ng-model="userData.location")
-					p(class="card-element" ng-show="!editing") {{ userData.location }}
-					input(type="text" placeholder="edit email", ng-show="editing", ng-model="userData.email")
-					p(class="card-element" ng-show="!editing") {{ userData.email }}
-				div
-					button(ng-show="!editing" ng-click="editToggle()") Edit Card
-					button(ng-click="updateUser()" ng-show="editing") Update Card
+		.my-card(ng-controller="userController")
+			.top-row
+				.my-card-photo
+					img(class="border" src='{{userData.profilePhoto}}', height="100px", width="100px")
+					
+			.middle-row
+				.middle-col
+					div.card-element
+						#name {{ userData.name }}
+						input(class="edit-border" type="text" placeholder="edit name", ng-show="editing", ng-model="userData.name")
+					div.card-element
+						.text {{ userData.company || "independent"}}
+						input(class="edit-border" type="text" placeholder="edit company", ng-show="editing", ng-model="userData.company")
+					div.card-element
+						.text {{ userData.location }}
+						input(class="edit-border" type="text" placeholder="edit location", ng-show="editing", ng-model="userData.location")
+					div.card-element
+						.text {{ userData.email }}
+						input(class="edit-border" type="text" size="30" placeholder="edit email", ng-show="editing", ng-model="userData.email")
+					br
+					div.card-element
+						.text {{ userData.bio || "edit card to add bio" }}
+						textarea(class="edit-border" cols="30" placeholder="edit bio", ng-show="editing", ng-model="userData.bio")
+
+				.middle-col
+					div.card-element
+						.text On GitHub since {{ userData.githubSince }}
+						input(class="edit-border" type="text" placeholder="edit date", ng-show="editing", ng-model="userData.githubSince")
+					div.card-element						
+						.text Public Repos: {{ userData.reposNum }}
+						input(class="edit-border" type="text" placeholder="edit public repos #", ng-show="editing", ng-model="userData.reposNum")
+					div.card-element
+						.text Followers: {{ userData.followers }}
+						input(class="edit-border" type="text" placeholder="edit followers #", ng-show="editing", ng-model="userData.followers")
+					div.card-element
+						.text Languages:
+						.text(ng-repeat="el in userData.languagesSumStrings") {{ el }}
+			.bottom-row
+				#edit-footer
+					.edit-button(ng-show="!editing" ng-click="editToggle()") Edit Card
+					.edit-button(ng-click="updateUser()" ng-show="editing") Update Card
+
+
+
+
+
+
+			
+	
+	
+	
+	

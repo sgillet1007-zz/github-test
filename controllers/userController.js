@@ -23,8 +23,6 @@ var userController = {
 				res.send(parsed);
 			}
 		})
-
-
 	},
 
 	postMe: function(req, res){
@@ -41,6 +39,7 @@ var userController = {
 			reposNum      : req.body.reposNum,
 			followers     : req.body.followers,
 			starredRepos  : req.body.starredRepos,
+			languagesSumStrings: req.body.languagesSumStrings,
 			profilePhoto  : req.body.profilePhoto
 		}
 
