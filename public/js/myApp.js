@@ -9,22 +9,22 @@ myApp.controller('userController', function($scope, $http) {
 		var joinedMonth = monthNames[Number(response.data.created_at.slice(5, 7))-1];
 		var joinedDate = joinedMonth + ", " + joinedYear;
 		$scope.userData = {
-			_id				   : String(response.data.id),
-			name 			   : response.data.name,
-			location		   : response.data.location,
-			email			   : response.data.email,
-			company			   : response.data.company,
-			hireable		   : response.data.hireable,
-			bio				   : response.data.bio,
-			githubProfile	   : response.data.html_url,
-			githubSince		   : joinedDate,
-			reposNum		   : response.data.public_repos,
-			followers		   : response.data.followers,
-			starredRepos	   : response.data.starred_url,
-			starredReposArray  : [],
-			languagesList      : [],
-			languagesSumStrings: [],
-			profilePhoto	   : response.data.avatar_url
+			_id				    : String(response.data.id),
+			name 			    : response.data.name,
+			location		    : response.data.location,
+			email			    : response.data.email,
+			company			    : response.data.company,
+			hireable		    : response.data.hireable,
+			bio				    : response.data.bio,
+			githubProfile	    : response.data.html_url,
+			githubSince		    : joinedDate,
+			reposNum		    : response.data.public_repos,
+			followers		    : response.data.followers,
+			starredRepos	    : response.data.starred_url,
+			starredReposArray   : [],
+			languagesList       : [],
+			languagesSumStrings	: [],
+			profilePhoto	   	: response.data.avatar_url
 		};
 	}).then(function(){
 		return $http.get('/user/languages');
@@ -43,9 +43,7 @@ myApp.controller('userController', function($scope, $http) {
 			langStringArray.push("* "+i+" ("+String(langCount[''+i+'']) +" starred repos)");
 		}
 		$scope.userData.languagesSumStrings = langStringArray.join();
-		// console.log('$scope.userData.languagesSumStrings: ', $scope.userData.languagesSumStrings);
 	}).then(function(){
-		console.log("*** CHECKING $scope.userData before POST: ", $scope.userData)
 		$http.post('/users/create', $scope.userData);
 	}).then(function(){
 		return $http.get('/users/getUser');

@@ -27,20 +27,20 @@ var userController = {
 
 	postMe: function(req, res){
 		var user = {
-			_id      	  : req.body._id,
-			name          : req.body.name,
-			location      : req.body.location,
-			email         : req.body.email,
-			company       : req.body.company,
-			hireable      : req.body.hireable,
-			bio           : req.body.bio,
-			githubProfile : req.body.githubProfile,
-			githubSince   : req.body.githubSince,
-			reposNum      : req.body.reposNum,
-			followers     : req.body.followers,
-			starredRepos  : req.body.starredRepos,
-			languagesSumStrings: req.body.languagesSumStrings,
-			profilePhoto  : req.body.profilePhoto
+			_id      	        : req.body._id,
+			name                : req.body.name,
+			location            : req.body.location,
+			email               : req.body.email,
+			company             : req.body.company,
+			hireable            : req.body.hireable,
+			bio                 : req.body.bio,
+			githubProfile       : req.body.githubProfile,
+			githubSince         : req.body.githubSince,
+			reposNum            : req.body.reposNum,
+			followers           : req.body.followers,
+			starredRepos        : req.body.starredRepos,
+			languagesSumStrings : req.body.languagesSumStrings,
+			profilePhoto        : req.body.profilePhoto
 		}
 
 		var newUser = new User(user);
