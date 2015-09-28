@@ -25,7 +25,7 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new GitHubStrategy({
     clientID: GITHUB_CLIENT_ID,
     clientSecret: GITHUB_CLIENT_SECRET,
-    callbackURL: "https://git.heroku.com/github-rolodex-sg/auth/github/callback"
+    callbackURL: "https://github-rolodex-sg.herokuapp.com/auth/github/callback"
   },
 
   function(accessToken, refreshToken, profile, done) {
