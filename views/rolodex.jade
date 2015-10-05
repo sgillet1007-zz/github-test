@@ -7,8 +7,8 @@ block content
 						a(href="/auth/github" class="menu-text") My Card
 				p.menu-item
 					a(href="/logout" class="menu-text") Log Out
-	div(ng-controller="rolodexController" ng-cloak)
-		.my-card(ng-repeat="entry in rolodex")
+	div(ng-controller="rolodexController as rolo" ng-cloak)
+		.my-card(ng-repeat="entry in rolo.rolodex")
 				.top-row
 					.my-card-photo
 						img(class="border" src='{{entry.profilePhoto}}' height="100px" width="100px")
