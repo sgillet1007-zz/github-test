@@ -39,12 +39,10 @@ myApp.controller('userController', function($scope, $http) {
 		return languagesArray
 	}).then(function(response){
 		$scope.userData.languagesList = response;
-		var langCount = $scope.count($scope.userData.languagesList); //builds an array/object 
-		console.log("**1** langCount variable is a ", typeof langCount);
-		console.log("**1** langCount variable: ", langCount);
+		var langCount = $scope.count($scope.userData.languagesList); //creates obj 'langCount' of format --> { language name : starred repo count }
 		var langStringArray = [];
-		for (i in langCount){
-			langStringArray.push(" "+i+" ("+String(langCount[''+i+'']) +" starred repos)");
+		for (lang in langCount){
+			langStringArray.push(" "+lang+" ("+String(langCount[''+lang+'']) +" starred repos)"); //uses bracket notation to access count value for each language key in langCount obj
 		}
 		$scope.userData.languagesSumStrings = langStringArray.join();
 	}).then(function(){
