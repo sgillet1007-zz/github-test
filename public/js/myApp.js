@@ -40,7 +40,8 @@ myApp.controller('userController', function($scope, $http) {
 	}).then(function(response){
 		$scope.userData.languagesList = response;
 		var langCount = $scope.count($scope.userData.languagesList); //builds an array/object 
-		console.log("**1** langCount variable is a ", typeof langCount " and is equal to: ", langCount)
+		console.log("**1** langCount variable is a ", typeof langCount);
+		console.log("**1** langCount variable: ", langCount);
 		var langStringArray = [];
 		for (i in langCount){
 			langStringArray.push(" "+i+" ("+String(langCount[''+i+'']) +" starred repos)");
