@@ -39,8 +39,8 @@ var userController = {
 			reposNum            : req.body.reposNum,
 			followers           : req.body.followers,
 			starredRepos        : req.body.starredRepos,
-			starredReposArray   : req.body.starredReposArray, //added
-			languagesList       : req.body.languagesList, //added
+			starredReposArray   : req.body.starredReposArray,
+			languagesList       : req.body.languagesList,
 			languagesSumStrings : req.body.languagesSumStrings,
 			profilePhoto        : req.body.profilePhoto
 		}
@@ -69,7 +69,6 @@ var userController = {
 	},
 
 	getUsers: function(req, res) {
-		//pass returned data to --> $scope.users
 		User.find({}, function(err, allUsers) {
 			err ? console.log("GET Error: ", console.log) : (console.log("*** allUsers: ", allUsers),
 			res.send(allUsers));

@@ -22,9 +22,8 @@ myApp.controller('userController', function($scope, $http) {
 			followers		    : response.data.followers,
 			starredRepos	    : response.data.starred_url,
 			starredReposArray   : [], //an array of starred repos objects
-			languagesList       : [], //array of 'language value' strings
-			// languagesSumStrings	: [], //change to string *********************
-			languagesSumStrings	: '', //changed to string *********************
+			languagesList       : [], //array of 'language value' strings... use .count function and .join method to make string to display on card
+			languagesSumStrings	: '', //string to display on card
 			profilePhoto	   	: response.data.avatar_url
 		};
 	}).then(function(){
