@@ -58,12 +58,13 @@ app.get('/', userController.index);
 app.get('/users/get', userController.me);
 //GET user languages from github and set $scope.userData.starredReposArray
 app.get('/user/languages', userController.myLanguages);
-//POST $scope.ghUserData to mongo db.  Mongo validation of "_id" property prevents overwriting.
+//POST $scope.userData to mongo db.  Mongo validation of "_id" property prevents overwriting.
 app.post('/users/create', userController.postMe);
 //GET user with "_id" === logged in user github "id" property.
 app.get('/users/getUser', userController.getUser);
-//PUT user
+//PUT user to mongo db
 app.post('/users/putUser', userController.putUser);
+
 //Render rolodex view
 app.get('/rolodex', userController.rolodex);
 //GET all users

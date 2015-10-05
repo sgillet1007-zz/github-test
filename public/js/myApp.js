@@ -23,7 +23,8 @@ myApp.controller('userController', function($scope, $http) {
 			starredRepos	    : response.data.starred_url,
 			starredReposArray   : [], //an array of starred repos objects
 			languagesList       : [], //array of 'language value' strings
-			languagesSumStrings	: [], //change to string *********************
+			// languagesSumStrings	: [], //change to string *********************
+			languagesSumStrings	: '', //changed to string *********************
 			profilePhoto	   	: response.data.avatar_url
 		};
 	}).then(function(){

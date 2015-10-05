@@ -39,6 +39,8 @@ var userController = {
 			reposNum            : req.body.reposNum,
 			followers           : req.body.followers,
 			starredRepos        : req.body.starredRepos,
+			starredReposArray   : req.body.starredReposArray, //added
+			languagesList       : req.body.languagesList, //added
 			languagesSumStrings : req.body.languagesSumStrings,
 			profilePhoto        : req.body.profilePhoto
 		}
