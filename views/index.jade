@@ -17,7 +17,7 @@ block content
 			.top-row
 				.my-card-photo
 					img(class="border" src='{{userData.profilePhoto}}', height="100px", width="100px")
-					input(class="edit-border" type="text" placeholder="edit photo url" ng-show="editing" ng-model="userData.profilePhoto")
+					input(class="edit-border" type="text" size="40" placeholder="edit photo url" ng-show="editing" ng-model="userData.profilePhoto")
 					
 			.middle-row
 				.middle-col
@@ -32,11 +32,11 @@ block content
 						input(class="edit-border" type="text" placeholder="edit location", ng-show="editing", ng-model="userData.location")
 					div.card-element
 						.text {{ userData.email }}
-						input(class="edit-border" type="text" size="30" placeholder="edit email", ng-show="editing", ng-model="userData.email")
+						input(class="edit-border" type="text" size="40" placeholder="edit email", ng-show="editing", ng-model="userData.email")
 					br
 					div.card-element
 						.text {{ userData.bio || "edit card to add bio" }}
-						textarea(class="edit-border" cols="30" placeholder="edit bio", ng-show="editing", ng-model="userData.bio")
+						textarea(class="edit-border" cols="50" placeholder="edit bio", ng-show="editing", ng-model="userData.bio")
 
 				.middle-col
 					div.card-element
@@ -50,8 +50,8 @@ block content
 						input(class="edit-border" type="text" placeholder="edit followers #", ng-show="editing", ng-model="userData.followers")
 					div.card-element
 						.text Languages:
-						.text {{userData.languagesSumStrings}}
-						textarea(class="edit-border" cols="30" placeholder="edit languages" ng-show="editing" ng-model="userData.languagesSumStrings")
+						.text {{ userData.languagesSumStrings }}
+						textarea(class="edit-border" cols="50" placeholder="edit languages" ng-show="editing" ng-model="userData.languagesSumStrings")
 			.bottom-row
 				#edit-footer
 					.edit-button(ng-show="!editing" ng-click="editToggle()") Edit Card
