@@ -23,7 +23,7 @@ myApp.controller('userController', function($scope, $http) {
 			starredRepos	    : response.data.starred_url,
 			starredReposArray   : [], //an array of starred repos objects
 			languagesList       : [], //array of 'language value' strings
-			languagesSumStrings	: [], 
+			languagesSumStrings	: [], //change to string *********************
 			profilePhoto	   	: response.data.avatar_url
 		};
 	}).then(function(){
@@ -48,6 +48,8 @@ myApp.controller('userController', function($scope, $http) {
 		}
 		$scope.userData.languagesSumStrings = langStringArray.join();
 		console.log('*3* $scope.userData.languagesSumStrings: ', $scope.userData.languagesSumStrings) //remove this line
+		console.log('*3type* typeof $scope.userData.languagesSumStrings: ', typeof $scope.userData.languagesSumStrings) //remove this line
+
 	}).then(function(){
 		$http.post('/users/create', $scope.userData);
 	}).then(function(){

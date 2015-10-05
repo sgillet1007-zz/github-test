@@ -49,7 +49,8 @@ block content
 						input(class="edit-border" type="text" placeholder="edit followers #", ng-show="editing", ng-model="userData.followers")
 					div.card-element
 						.text Languages:
-						.text(ng-repeat="el in userData.languagesSumStrings") {{ el }}
+						//- .text(ng-repeat="el in userData.languagesSumStrings") {{ el }}
+						.text {{userData.languagesSumStrings}}
 			.bottom-row
 				#edit-footer
 					.edit-button(ng-show="!editing" ng-click="editToggle()") Edit Card
