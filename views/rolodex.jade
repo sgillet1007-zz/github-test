@@ -7,7 +7,7 @@ block content
 						a(href="/" class="menu-text") My Card
 				p.menu-item
 					a(href="/logout" class="menu-text") Log Out
-	div(ng-controller="rolodexController")
+	div(ng-controller="rolodexController" ng-cloak)
 		.my-card(ng-repeat="entry in rolodex")
 				.top-row
 					.my-card-photo

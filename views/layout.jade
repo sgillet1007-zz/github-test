@@ -5,13 +5,8 @@ html(lang='en' ng-app="myApp")
 		title GitHub Rolodex
 		link(rel="stylesheet", href="/css/main.css")
 	body(class="body")
+		block scripts
+			script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular.min.js")
+			script(type="text/javascript" src="/js/myApp.js")
 		h1(class="h1-title") GitHub Rolodex
 		block content
-
-		block scripts
-			//- script(type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js")
-			//- script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js")
-			script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular.min.js")
-			//- script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular-route.js")
-			//- script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular-resource.js")
-			script(type="text/javascript" src="/js/myApp.js")
