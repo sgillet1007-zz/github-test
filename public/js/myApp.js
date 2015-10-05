@@ -2,6 +2,7 @@ var myApp = angular.module('myApp', []);
 
 myApp.controller('userController', function($scope, $http) {
 	$scope.editing = false;
+	$scope.visible = false;
 	
 	$http.get('/users/get').then(function(response){
 		var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -51,6 +52,7 @@ myApp.controller('userController', function($scope, $http) {
 		return $http.get('/users/getUser');
 	}).then(function(responseData){
 		$scope.userData = responseData.data;
+		$scope.visible = true;    //make the card visible only after data comes back from database
 	}), function(error){
 		console.log("Error: ", error);
 	};

@@ -13,7 +13,7 @@ block content
 						a(href="/rolodex" class="menu-text") Rolodex
 					p.menu-item
 						a(href="/logout" class="menu-text") Log Out
-		.my-card(ng-controller="userController" ng-cloak)
+		.my-card(ng-controller="userController" ng-cloak ng-show="visible")
 			.top-row
 				.my-card-photo
 					img(class="border" src='{{userData.profilePhoto}}', height="100px", width="100px")
