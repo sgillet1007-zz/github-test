@@ -13,49 +13,49 @@ block content
 						a(href="/rolodex" class="menu-text") Rolodex
 					p.menu-item
 						a(href="/logout" class="menu-text") Log Out
-		.my-card(ng-controller="userController as user" ng-cloak)
+		.my-card(ng-controller="userController" ng-cloak)
 			.top-row
 				.my-card-photo
-					img(class="border" src='{{user.profilePhoto}}', height="100px", width="100px")
-					input(class="edit-border" type="text" size="40" placeholder="edit photo url" ng-show="user.editing" ng-model="user.profilePhoto")
+					img(class="border" src='{{userData.profilePhoto}}', height="100px", width="100px")
+					input(class="edit-border" type="text" size="40" placeholder="edit photo url" ng-show="editing" ng-model="userData.profilePhoto")
 					
 			.middle-row
 				.middle-col
 					div.card-element
-						#name {{ user.name }}
-						input(class="edit-border" type="text" size="30" placeholder="edit name", ng-show="user.editing", ng-model="user.name")
+						#name {{ userData.name }}
+						input(class="edit-border" type="text" size="30" placeholder="edit name", ng-show="editing", ng-model="userData.name")
 					div.card-element
-						.text {{ user.company || "independent"}}
-						input(class="edit-border" type="text" size="30" placeholder="edit company", ng-show="user.editing", ng-model="user.company")
+						.text {{ userData.company || "independent"}}
+						input(class="edit-border" type="text" size="30" placeholder="edit company", ng-show="editing", ng-model="userData.company")
 					div.card-element
-						.text {{ user.location }}
-						input(class="edit-border" type="text" size="30" placeholder="edit location", ng-show="user.editing", ng-model="user.location")
+						.text {{ userData.location }}
+						input(class="edit-border" type="text" size="30" placeholder="edit location", ng-show="editing", ng-model="userData.location")
 					div.card-element
-						.text {{ user.email }}
-						input(class="edit-border" type="text" size="30" placeholder="edit email", ng-show="user.editing", ng-model="user.email")
+						.text {{ userData.email }}
+						input(class="edit-border" type="text" size="30" placeholder="edit email", ng-show="editing", ng-model="userData.email")
 					br
 					div.card-element
-						.text {{ user.bio || "edit card to add bio" }}
-						textarea(class="edit-border" cols="40" placeholder="edit bio", ng-show="user.editing", ng-model="user.bio")
+						.text {{ userData.bio || "edit card to add bio" }}
+						textarea(class="edit-border" cols="40" placeholder="edit bio", ng-show="editing", ng-model="userData.bio")
 
 				.middle-col
 					div.card-element
-						.text On GitHub since {{ user.githubSince }}
-						input(class="edit-border" type="text" placeholder="edit date", ng-show="user.editing", ng-model="user.githubSince")
+						.text On GitHub since {{ userData.githubSince }}
+						input(class="edit-border" type="text" placeholder="edit date", ng-show="editing", ng-model="userData.githubSince")
 					div.card-element
-						.text Public Repos: {{ user.reposNum }}
-						input(class="edit-border" type="text" placeholder="edit public repos #", ng-show="user.editing", ng-model="user.reposNum")
+						.text Public Repos: {{ userData.reposNum }}
+						input(class="edit-border" type="text" placeholder="edit public repos #", ng-show="editing", ng-model="userData.reposNum")
 					div.card-element
-						.text Followers: {{ user.followers }}
-						input(class="edit-border" type="text" placeholder="edit followers #", ng-show="user.editing", ng-model="user.followers")
+						.text Followers: {{ userData.followers }}
+						input(class="edit-border" type="text" placeholder="edit followers #", ng-show="editing", ng-model="userData.followers")
 					div.card-element
 						.text Languages:
-						.text {{ user.languagesSumStrings }}
-						textarea(class="edit-border" cols="40" placeholder="edit languages" ng-show="user.editing" ng-model="user.languagesSumStrings")
+						.text {{ userData.languagesSumStrings }}
+						textarea(class="edit-border" cols="40" placeholder="edit languages" ng-show="editing" ng-model="userData.languagesSumStrings")
 			.bottom-row
 				#edit-footer
-					.edit-button(ng-show="!user.editing" ng-click="user.editToggle()") Edit Card
-					.edit-button(ng-click="updateUser()" ng-show="user.editing") Update Card
+					.edit-button(ng-show="!editing" ng-click="editToggle()") Edit Card
+					.edit-button(ng-click="updateUser()" ng-show="editing") Update Card
 
 
 

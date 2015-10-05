@@ -1,15 +1,14 @@
 var myApp = angular.module('myApp', []);
 
 myApp.controller('userController', function($scope, $http) {
-	var self = this;
-	self.editing = false;
+	$scope.editing = false;
 	
 	$http.get('/users/get').then(function(response){
 		var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 		var joinedYear = response.data.created_at.slice(0, 4);
 		var joinedMonth = monthNames[Number(response.data.created_at.slice(5, 7))-1];
 		var joinedDate = joinedMonth + ", " + joinedYear;
-		self.userData = {
+		$scope.userData = {
 			_id				    : String(response.data.id),
 			name 			    : response.data.name,
 			location		    : response.data.location,
@@ -30,7 +29,7 @@ myApp.controller('userController', function($scope, $http) {
 	}).then(function(){
 		return $http.get('/user/languages'); //github api call to get array of starred repo objects
 	}).then(function(response){
-		self.userData.starredReposArray = response.data;
+		$scope.userData.starredReposArray = response.data;
 		var languagesArray =[];
 		for(var i = 0; i<response.data.length;i++){
 			if (response.data[i].language != null){
@@ -39,37 +38,37 @@ myApp.controller('userController', function($scope, $http) {
 		}
 		return languagesArray
 	}).then(function(response){
-		self.userData.languagesList = response;
-		var langCount = self.count(self.userData.languagesList); //creates obj 'langCount' of format --> { language name : starred repo count }
+		$scope.userData.languagesList = response;
+		var langCount = $scope.count($scope.userData.languagesList); //creates obj 'langCount' of format --> { language name : starred repo count }
 		var langStringArray = [];
 		for (lang in langCount){
 			langStringArray.push(" "+lang+" ("+String(langCount[''+lang+'']) +" starred repos)"); //uses bracket notation to access count value for each language key in langCount obj
 		}
-		self.userData.languagesSumStrings = langStringArray.join();
+		$scope.userData.languagesSumStrings = langStringArray.join();
 	}).then(function(){
-		$http.post('/users/create', self.userData);
+		$http.post('/users/create', $scope.userData);
 	}).then(function(){
 		return $http.get('/users/getUser');
 	}).then(function(responseData){
-		self.userData = responseData.data;
+		$scope.userData = responseData.data;
 	}), function(error){
 		console.log("Error: ", error);
 	};
 
-	self.editToggle = function(){
-		self.editing = !self.editing;
+	$scope.editToggle = function(){
+		$scope.editing = !$scope.editing;
 	};
 	
-	self.updateUser = function(){
-		$http.post('/users/putUser', self.userData).then(function(response){
+	$scope.updateUser = function(){
+		$http.post('/users/putUser', $scope.userData).then(function(response){
 			console.log('User updated!!')
 		}), function(error){
 		console.log("Error: ", error);
 		};
-		self.editing = !self.editing;
+		$scope.editing = !$scope.editing;
 	};
 	//returns object with counts of each unique element from input array
-	self.count = function(array, classifier) {
+	$scope.count = function(array, classifier) {
     	return array.reduce(function(counter, item) {
         	var p = (classifier || String)(item);
         	counter[p] = counter.hasOwnProperty(p) ? counter[p] + 1 : 1;
@@ -78,11 +77,10 @@ myApp.controller('userController', function($scope, $http) {
 	};
 });
 
-myApp.controller('rolodexController', function($http){
+myApp.controller('rolodexController', function($scope, $http){
 	var self = this;
 	$http.get('/getUsers').then(function(response){
 		self.rolodex = response.data;
-		console.log("self.rolodex: ", self.rolodex)
 	}),function(error){
 		console.log("Rolodex Error: ", error);
 	};
