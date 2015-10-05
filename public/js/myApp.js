@@ -21,28 +21,33 @@ myApp.controller('userController', function($scope, $http) {
 			reposNum		    : response.data.public_repos,
 			followers		    : response.data.followers,
 			starredRepos	    : response.data.starred_url,
-			starredReposArray   : [],
-			languagesList       : [],
-			languagesSumStrings	: [],
+			starredReposArray   : [], //an array of starred repos objects
+			languagesList       : [], //array of 'language value' strings
+			languagesSumStrings	: [], 
 			profilePhoto	   	: response.data.avatar_url
 		};
 	}).then(function(){
 		return $http.get('/user/languages');
 	}).then(function(response){
 		$scope.userData.starredReposArray = response.data;
+		console.log("*1* $scope.userData.starredReposArray: ", $scope.userData.starredReposArray) //remove this line
 		var languagesArray =[];
 		for(var i = 0; i<response.data.length;i++){
-			languagesArray.push(response.data[i].language);
+			if (response.data[i].language != null){
+				languagesArray.push(response.data[i].language);
+			}
 		}
 		return languagesArray
 	}).then(function(response){
 		$scope.userData.languagesList = response;
+		console.log('*2* $scope.userData.languagesList: ', $scope.userData.languagesList) //remove this line
 		var langCount = $scope.count($scope.userData.languagesList);
 		var langStringArray = [];
 		for (i in langCount){
-			langStringArray.push("* "+i+" ("+String(langCount[''+i+'']) +" starred repos)");
+			langStringArray.push(""+i+" ("+String(langCount[''+i+'']) +" starred repos) ");
 		}
 		$scope.userData.languagesSumStrings = langStringArray.join();
+		console.log('*3* $scope.userData.languagesSumStrings: ', $scope.userData.languagesSumStrings) //remove this line
 	}).then(function(){
 		$http.post('/users/create', $scope.userData);
 	}).then(function(){
