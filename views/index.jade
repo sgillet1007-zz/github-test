@@ -23,20 +23,20 @@ block content
 				.middle-col
 					div.card-element
 						#name {{ userData.name }}
-						input(class="edit-border" type="text" placeholder="edit name", ng-show="editing", ng-model="userData.name")
+						input(class="edit-border" type="text" size="30" placeholder="edit name", ng-show="editing", ng-model="userData.name")
 					div.card-element
 						.text {{ userData.company || "independent"}}
-						input(class="edit-border" type="text" placeholder="edit company", ng-show="editing", ng-model="userData.company")
+						input(class="edit-border" type="text" size="30" placeholder="edit company", ng-show="editing", ng-model="userData.company")
 					div.card-element
 						.text {{ userData.location }}
-						input(class="edit-border" type="text" placeholder="edit location", ng-show="editing", ng-model="userData.location")
+						input(class="edit-border" type="text" size="30" placeholder="edit location", ng-show="editing", ng-model="userData.location")
 					div.card-element
 						.text {{ userData.email }}
-						input(class="edit-border" type="text" size="40" placeholder="edit email", ng-show="editing", ng-model="userData.email")
+						input(class="edit-border" type="text" size="30" placeholder="edit email", ng-show="editing", ng-model="userData.email")
 					br
 					div.card-element
 						.text {{ userData.bio || "edit card to add bio" }}
-						textarea(class="edit-border" cols="50" placeholder="edit bio", ng-show="editing", ng-model="userData.bio")
+						textarea(class="edit-border" cols="40" placeholder="edit bio", ng-show="editing", ng-model="userData.bio")
 
 				.middle-col
 					div.card-element
@@ -51,7 +51,7 @@ block content
 					div.card-element
 						.text Languages:
 						.text {{ userData.languagesSumStrings }}
-						textarea(class="edit-border" cols="50" placeholder="edit languages" ng-show="editing" ng-model="userData.languagesSumStrings")
+						textarea(class="edit-border" cols="40" placeholder="edit languages" ng-show="editing" ng-model="userData.languagesSumStrings")
 			.bottom-row
 				#edit-footer
 					.edit-button(ng-show="!editing" ng-click="editToggle()") Edit Card
